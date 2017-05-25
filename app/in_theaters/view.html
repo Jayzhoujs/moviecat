@@ -1,0 +1,36 @@
+<h1 class="page-header">{{title}}</h1>
+<h2 ng-if="message">{{message}}</h2>
+<div class="list-group">
+  <a ng-repeat="item in subjects" class="list-group-item" href="#">
+    <span class="badge">{{item.rating.average}}</span>
+    <div class="media">
+      <div class="media-left">
+        <img class="media-object" ng-src="{{item.images.small}}" alt="item.title">
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading">{{item.title}}</h3>
+        <p>类型：<span>{{item.genres.join('、')}}</span></P>
+        <p>导演：<span ng-repeat="d in item.directors">{{d.name}}<span ng-if="!$last">、</span></span></p>
+        <p>主演：<span ng-repeat="c in item.casts">{{c.name}}<span ng-if="!$last">、</span></span></p>
+      </div>
+    </div>
+  </a>
+</div>
+<div ng-show="!loading">
+  <p>总共：{{totalCount}}条记录，第{{currentPage}}/{{totalPages}}页</p>
+  <nav>
+    <ul class="pager">
+      <li><a ng-click="goPage(currentPage-1)"><span aria-hidden="true">&larr;</span> Older</a></li>
+      <li><a ng-click="goPage(currentPage+1)">Newer <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+  </nav>
+</div>
+<div class="mask" ng-show="loading">
+  <div class="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
